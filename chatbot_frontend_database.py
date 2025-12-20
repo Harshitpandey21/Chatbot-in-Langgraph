@@ -75,7 +75,6 @@ if user_input:
                 stream_mode="messages"
             ):
                 if isinstance(message_chunk, AIMessage):
-                    # yield only assistant tokens
                     yield message_chunk.content
 
         ai_message = st.write_stream(ai_only_stream())
