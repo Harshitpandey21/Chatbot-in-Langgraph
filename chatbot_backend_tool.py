@@ -48,7 +48,7 @@ def stock_price(symbol: str) -> dict:
    Give the latest stock price for the given symbol(eg. 'TSLA')
    using Alpha Vantage with API key in the url.
    """
-   url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey= MK5DKEJTIEFO3G1L"
+   url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey= YOUR_API_KEY"
    r = requests.get(url)
    return r.json()
 
