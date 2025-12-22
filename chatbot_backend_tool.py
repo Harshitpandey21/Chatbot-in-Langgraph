@@ -14,7 +14,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-llm = ChatOpenAI()
+llm = ChatOpenAI(model="gpt-4o")
 
 search_tool= DuckDuckGoSearchRun(region= "us-en")
 
