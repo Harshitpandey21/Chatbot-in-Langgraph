@@ -58,24 +58,23 @@ for message in st.session_state['message_history']:
     with st.chat_message(message['role']):
         st.text(message['content'])
 
-user_input= st.chat_input("Ask me anything..")
+user_input= st.chat_input("Type here...")
 
 if user_input:
     st.session_state['message_history'].append({'role': 'user', 'content': user_input})
     with st.chat_message('user'):
         st.text(user_input)
 
-    CONFIG = {"configurable": {"thread_id": st.session_state["thread_id"]}}
+    config = {"configurable": {"thread_id": st.session_state["thread_id"]}}
 
     with st.chat_message("assistant"):
         def ai_only_stream():
             for message_chunk, metadata in chatbot.stream(
                 {"messages": [HumanMessage(content=user_input)]},
-                config=CONFIG,
+                config = config,
                 stream_mode="messages"
             ):
                 if isinstance(message_chunk, AIMessage):
-                    # yield only assistant tokens
                     yield message_chunk.content
 
         ai_message = st.write_stream(ai_only_stream())
