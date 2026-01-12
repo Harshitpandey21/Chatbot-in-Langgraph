@@ -8,14 +8,14 @@ import sqlite3
 from dotenv import load_dotenv
 load_dotenv()
 
-llm = ChatOpenAI()
+model = ChatOpenAI()
 
 class ChatState(TypedDict):
     messages : Annotated[list[BaseMessage], add_messages]
 
 def chat_node(state: ChatState):
     messages = state["messages"]
-    response = llm.invoke(messages)
+    response = model.invoke(messages)
     return {"messages": [response]}
 
 graph = StateGraph(ChatState)
