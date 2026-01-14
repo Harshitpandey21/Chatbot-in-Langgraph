@@ -65,13 +65,13 @@ if user_input:
     with st.chat_message('user'):
         st.text(user_input)
 
-    CONFIG = {"configurable": {"thread_id": st.session_state["thread_id"]}}
+    config = {"configurable": {"thread_id": st.session_state["thread_id"]}}
 
     with st.chat_message("assistant"):
         def ai_only_stream():
             for message_chunk, metadata in chatbot.stream(
                 {"messages": [HumanMessage(content=user_input)]},
-                config=CONFIG,
+                config=config,
                 stream_mode="messages"
             ):
                 if isinstance(message_chunk, AIMessage):
